@@ -4,6 +4,7 @@ import Products from "./components/Products";
 import About from "./components/About";
 import { Route, Routes, Link } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail";
+import NotFound from "./components/NotFound";
 function App() {
   return (
     <>
@@ -26,10 +27,13 @@ function App() {
       </ul>
       <hr />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/about" element={<About />} />
-        <Route path=":id" element={<ProductDetail />}></Route>
+        <Route path="/">
+          <Route index element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </>
   );
